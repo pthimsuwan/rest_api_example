@@ -1,0 +1,14 @@
+#Stage 1 Build
+FROM maven:3.8.1-openjdk-15 as build
+WORKDIR /app
+ADD Sample /app
+RUN mvn install
+
+#stage 2 run
+FROM adoptopenjdk/openjdk15:alpine-jre as run
+ENV CLASSPATH /app/lib
+
+COPY --from=build /app/target/*.jar /app/app.jar
+
+WORKDIR /app
+ENTRYPOINT ["java","-jar","app.jar"]

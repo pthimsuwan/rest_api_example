@@ -1,0 +1,12 @@
+logging:
+ file.name: /logs/${spring.application.name}.log
+
+server.port: 5000
+
+persistence:
+ rateFile: rates.json
+
+spring:
+  application:
+    name: sample
+    title: Spothero Sample

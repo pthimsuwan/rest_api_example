@@ -1,0 +1,112 @@
+---
+openapi: 3.0.1
+info:
+  title: defaultTitle
+  description: defaultDescription
+  version: "0.1"
+servers:
+  - url: http://localhost:5000
+paths:
+  /rates/get:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                "0":
+                  value: '[{"times":"0900-2100","tz":"America/Chicago","price":1500,"days":"mon,tues,thurs"},{"times":"0900-2100","tz":"America/Chicago","price":2000,"days":"fri,sat,sun"},{"times":"0600-1800","tz":"America/Chicago","price":1750,"days":"wed"},{"times":"0100-0500","tz":"America/Chicago","price":1000,"days":"mon,wed,sat"},{"times":"0100-0700","tz":"America/Chicago","price":925,"days":"sun,tues"}]'
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /price:
+    get:
+      description: Auto generated using Swagger Inspector
+      parameters:
+        - name: start
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+          example: 2015-07-01T07:00:00-05:00
+        - name: end
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+          example: 2015-07-01T12:00:00-05:00
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+              examples:
+                "0":
+                  value: '{"Price":1750}'
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /rates/put:
+    put:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/rates_put_body'
+            examples:
+              "0":
+                value: "{\r\n  \"rates\": [\r\n    {\r\n      \"days\": \"mon,tues,thurs\",\r\n      \"times\": \"0900-2100\",\r\n      \"tz\": \"America/Chicago\",\r\n      \"price\": 1500\r\n    },\r\n    {\r\n      \"days\": \"fri,sat,sun\",\r\n      \"times\": \"0900-2100\",\r\n      \"tz\": \"America/Chicago\",\r\n      \"price\": 2000\r\n    },\r\n    {\r\n      \"days\": \"wed\",\r\n      \"times\": \"0600-1800\",\r\n      \"tz\": \"America/Chicago\",\r\n      \"price\": 1750\r\n    },\r\n    {\r\n      \"days\": \"mon,wed,sat\",\r\n      \"times\": \"0100-0500\",\r\n      \"tz\": \"America/Chicago\",\r\n      \"price\": 1000\r\n    },\r\n    {\r\n      \"days\": \"sun,tues\",\r\n      \"times\": \"0100-0700\",\r\n      \"tz\": \"America/Chicago\",\r\n      \"price\": 925\r\n    }\r\n  ]\r\n}"
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                "0":
+                  value: "200"
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+components:
+  schemas:
+    inline_response_200:
+      type: object
+      properties:
+        Price:
+          type: integer
+    ratesput_rates:
+      type: object
+      properties:
+        times:
+          type: string
+        tz:
+          type: string
+        price:
+          type: integer
+        days:
+          type: string
+    rates_put_body:
+      type: object
+      properties:
+        rates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ratesput_rates'
